@@ -9,9 +9,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.time.Duration;
 
-public class LAB3 {
+public class LAB19 {
 
-    public static void main(String[] args) throws InterruptedException { // Added InterruptedException
+    public static void main(String[] args) throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -20,47 +20,44 @@ public class LAB3 {
 
         try {
             driver.get("https://the-internet.herokuapp.com/javascript_alerts");
-            Thread.sleep(1500); // Pause after loading page
+            Thread.sleep(1500);
 
-            // 1. SIMPLE ALERT
             driver.findElement(By.xpath("//button[text()='Click for JS Alert']")).click();
             Alert simpleAlert = wait.until(ExpectedConditions.alertIsPresent());
-            Thread.sleep(1500); // Pause to see the alert
+            Thread.sleep(1500);
 
             simpleAlert.accept();
-            System.out.println("✅ Simple Alert Accepted");
-            Thread.sleep(1500); // Pause after accepting
+            System.out.println("Simple Alert Accepted");
+            Thread.sleep(1500);
 
-            // 2. CONFIRM ALERT
             WebElement confirmAlertBtn = driver.findElement(By.xpath("//button[text()='Click for JS Confirm']"));
             confirmAlertBtn.click();
             
             Alert confirmAlert = wait.until(ExpectedConditions.alertIsPresent());
-            Thread.sleep(1500); // Pause to see the alert
+            Thread.sleep(1500);
             
             confirmAlert.accept();
-            System.out.println("✅ Confirm Alert Accepted (OK)");
-            Thread.sleep(1500); // Pause after accepting
+            System.out.println("Confirm Alert Accepted (OK)");
+            Thread.sleep(1500);
 
             confirmAlertBtn.click();
             confirmAlert = wait.until(ExpectedConditions.alertIsPresent());
-            Thread.sleep(1500); // Pause to see the alert
+            Thread.sleep(1500);
             
             confirmAlert.dismiss();
-            System.out.println("✅ Confirm Alert dismissed (Cancel)");
-            Thread.sleep(1500); // Pause after dismissing
+            System.out.println("Confirm Alert dismissed (Cancel)");
+            Thread.sleep(1500);
 
-            // 3. PROMPT ALERT
             driver.findElement(By.xpath("//button[text()='Click for JS Prompt']")).click();
             Alert promptAlert = wait.until(ExpectedConditions.alertIsPresent());
-            Thread.sleep(1500); // Pause to see the alert
+            Thread.sleep(1500);
 
             promptAlert.sendKeys("Hello Selenium!");
-            Thread.sleep(1500); // Pause to see the text being entered
+            Thread.sleep(1500);
 
             promptAlert.accept();
-            System.out.println("✅ Prompt Alert Accepted");
-            Thread.sleep(2000); // Final pause before closing
+            System.out.println("Prompt Alert Accepted");
+            Thread.sleep(2000);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -17,12 +17,10 @@ public class lab15 {
         driver.manage().window().maximize();
         driver.get("https://practicetestautomation.com/practice-test-login/");
 
-        // **FIX 1**: Corrected the file path to use your username and Desktop location.
-        // Make sure you have created the login_data.csv file on your Desktop!
         String csvFile = "C:\\Users\\shukl\\Desktop\\login_data.csv";
         
         BufferedReader br = new BufferedReader(new FileReader(csvFile));
-        br.readLine(); // Skip the header row
+        br.readLine();
 
         String line;
         while ((line = br.readLine()) != null) {
@@ -30,7 +28,6 @@ public class lab15 {
             String username = data[0];
             String password = data[1];
 
-            // **FIX 2**: Clear fields before sending new keys for reliability.
             driver.findElement(By.id("username")).clear();
             driver.findElement(By.id("username")).sendKeys(username);
 
@@ -40,12 +37,11 @@ public class lab15 {
             driver.findElement(By.id("submit")).click();
 
             try {
-                // Check for successful login by finding the "Log out" button
                 driver.findElement(By.linkText("Log out"));
-                System.out.println("✅ Login successful for: " + username);
-                driver.findElement(By.linkText("Log out")).click(); // Log out to test the next user
+                System.out.println("Login successful for: " + username);
+                driver.findElement(By.linkText("Log out")).click();
             } catch (Exception e) {
-                System.out.println("❌ Login failed for: " + username);
+                System.out.println("Login failed for: " + username);
             }
         }
         
