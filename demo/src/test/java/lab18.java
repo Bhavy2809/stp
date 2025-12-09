@@ -3,7 +3,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class lab18 {
@@ -14,12 +14,12 @@ public class lab18 {
         WebDriver chromeDriver = new ChromeDriver();
         performSearch(chromeDriver, "Chrome");
 
-        System.out.println("--- Starting test on Microsoft Edge ---");
+        System.out.println("--- Starting test on Firefox ---");
         
-        System.setProperty("webdriver.edge.driver", "C:\\drivers\\msedgedriver.exe");
+        WebDriverManager.firefoxdriver().setup();
         
-        WebDriver edgeDriver = new EdgeDriver();
-        performSearch(edgeDriver, "Edge");
+        WebDriver firefoxDriver = new FirefoxDriver();
+        performSearch(firefoxDriver, "Firefox");
     }
 
     public static void performSearch(WebDriver driver, String browserName) {
